@@ -189,6 +189,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             robot.setType(UserType.Bot);
             save(robot);
         }
+        //ragflow知识库（林语小助手）
+        User ragflow = getById("ragflow");
+        if (ragflow == null) {
+            User robot = new User();
+            robot.setId("ragflow");
+            robot.setName("林语小助手");
+            robot.setEmail(IdUtil.simpleUUID() + "@robot.com");
+            robot.setType(UserType.Bot);
+            save(robot);
+        }
     }
 
     @Override

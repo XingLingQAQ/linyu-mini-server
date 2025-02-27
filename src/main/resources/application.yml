@@ -48,3 +48,10 @@ linyu:
     count-limit: 2 #次数限制,0-不限制
     length-limit: 50 #内容长度限制,0-不限制
     model: deepseek-chat
+  ragflow:
+    host: http://127.0.0.1
+    api-key: ragflow-RlNGJiMzNlZjRlZTExZWZhOThkMDI0Mm
+    chat-id: 0daeb614f4ed11ef8df20242ac120006
+    session-id: f8e2ba0b05f1469c99c34c7369cf230f
+    count-limit: 20 #次数限制,0-不限制
+    length-limit: 50 #内容长度限制,0-不限制

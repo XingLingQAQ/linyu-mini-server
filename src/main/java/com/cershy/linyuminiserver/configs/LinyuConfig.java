@@ -15,6 +15,7 @@ public class LinyuConfig {
     private int expires;
     private AiConfig doubao;
     private AiConfig deepSeek;
+    private AiConfig ragflow;
 
     @Data
     public static class AiConfig {
@@ -22,5 +23,8 @@ public class LinyuConfig {
         private int countLimit;
         private int lengthLimit;
         private String model;
+        private String chatId;
+        private String sessionId;
+        private String host;
     }
 }

@@ -34,6 +34,9 @@ public class AiChatService {
     @Resource
     DeepSeekAiService deepSeekAiService;
 
+    @Resource
+    RagFlowAiService ragFlowAiService;
+
     @Async("taskExecutor")
     public void sendBotReply(String userId, String targetId, UserDto botUser, String content) {
         UserDto user = userService.getUserById(userId);
@@ -51,6 +54,9 @@ public class AiChatService {
                 break;
             case "deepseek":
                 ask = deepSeekAiService.ask(userId, content);
+                break;
+            case "ragflow":
+                ask = ragFlowAiService.ask(userId, content);
                 break;
         }
         TextMessageContent msgText = new TextMessageContent();
