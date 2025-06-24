@@ -138,12 +138,16 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
         message.setToId(sendMessageVo.getTargetId());
         StringBuffer sb = new StringBuffer();
         AtomicReference<UserDto> botUserRef = new AtomicReference<>(null);
+        UserDto user = userService.getUserById(userId);
         if (MessageType.Text.equals(sendMessageVo.getType())) {
             // 敏感词替换
             List<TextMessageContent> contents = JSONUtil.toList(sendMessageVo.getMsgContent(), TextMessageContent.class);
             contents.forEach(content -> {
                 if (TextContentType.Text.equals(content.getType())) {
-                    content.setContent(sensitiveWordBs.replace(content.getContent()));
+                    //非机器人用户
+                    if (!UserType.Bot.equals(user.getType())) {
+                        content.setContent(sensitiveWordBs.replace(content.getContent()));
+                    }
                     sb.append(content.getContent());
                 } else {
                     UserDto userDto = JSONUtil.toBean(content.getContent(), UserDto.class);
@@ -157,7 +161,6 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
             message.setMessage(sendMessageVo.getMsgContent());
         }
         message.setType(sendMessageVo.getType());
-        UserDto user = userService.getUserById(userId);
         user.setIpOwnership(IpUtil.getIpRegion(sendMessageVo.getUserIp()));
         message.setFromInfo(user);
         if (null == previousMessage) {

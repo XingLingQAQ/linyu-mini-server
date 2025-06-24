@@ -53,3 +53,14 @@ CREATE TABLE IF NOT EXISTS `message`
     PRIMARY KEY (`id`),
     INDEX           `idx_message_from_id_to_id` (`from_id`, `to_id`)
 );
+
+CREATE TABLE IF NOT EXISTS `notify`
+(
+    `id`             VARCHAR(255) NOT NULL,
+    `notify_title`   VARCHAR(255) DEFAULT NULL,
+    `notify_content` TEXT         DEFAULT NULL,
+    `type`           VARCHAR(255) DEFAULT NULL,
+    `create_time`    timestamp(3) NOT NULL,
+    `update_time`    timestamp(3) NOT NULL,
+    PRIMARY KEY (`id`)
+);

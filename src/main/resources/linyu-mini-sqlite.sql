@@ -56,3 +56,15 @@ CREATE TABLE IF NOT EXISTS "message"
 );
 
 CREATE INDEX IF NOT EXISTS idx_message_from_id_to_id ON message (from_id, to_id);
+
+
+CREATE TABLE IF NOT EXISTS "notify"
+(
+    "id"             TEXT    NOT NULL,
+    "notify_title"   TEXT DEFAULT NULL,
+    "notify_content" TEXT DEFAULT NULL,
+    "type"           TEXT DEFAULT NULL,
+    "create_time"    INTEGER NOT NULL,
+    "update_time"    INTEGER NOT NULL,
+    PRIMARY KEY ("id")
+);
